@@ -50,6 +50,11 @@ public class AdminController {
     }
 
     /* Remove Admin */
+    @DeleteMapping("/delete-admin/{id}")
+    public ResponseEntity<?> deleteAdminAccount(@PathVariable(value = "id") String id){
+        Admin admin = adminService.deleteAdminFromDB(Integer.parseInt(id));
+        return admin!=null?  new ResponseEntity<>(admin,HttpStatus.OK):new ResponseEntity<>("Admin Not Found",HttpStatus.OK);
+    }
     
     /* Update Admin Details */
 }

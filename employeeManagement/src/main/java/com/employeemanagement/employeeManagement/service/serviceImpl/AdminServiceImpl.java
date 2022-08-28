@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -41,5 +42,18 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public Admin adminFromGivenOrg(String org) {
         return adminRepo.findByOrg(org);
+    }
+
+    @Override
+    public Admin deleteAdminFromDB(int id) {
+        Optional<Admin> admin = adminRepo.findById(id);
+        Admin deletedAdmin=null;
+        try{
+            deletedAdmin = admin.get();
+            adminRepo.delete(deletedAdmin);
+        }catch(Exception exception){
+            deletedAdmin = null;
+        }
+        return deletedAdmin;
     }
 }

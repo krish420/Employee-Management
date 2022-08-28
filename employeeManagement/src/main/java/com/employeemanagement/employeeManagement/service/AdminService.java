@@ -6,6 +6,11 @@ import java.util.List;
 
 public interface AdminService {
     String registerAdmin(Admin admin);
+
     List<Admin> findAdminList();
+
     Admin adminFromGivenOrg(String org);
+
+    Admin deleteAdminFromDB(int id);
+
 }
